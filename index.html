@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Match the Flag..!!</title>
+<meta charset="utf-8" />
+
+<link href="ct.jpg" rel="icon" type="image/x-icon" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href = "stylesheet.css" >
+
+<script type="text/javascript">
+
+	var arr = ['ind.png','pak.png','nz.png','sa.png','sl.png','aus.png','eng.png','ban.png','ind.png','pak.png','nz.png','sa.png','sl.png','aus.png','eng.png','ban.png'];
+	var index = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8];
+
+var turned=0;
+				var previous;
+				var count=0;
+				var out=[-1,-1,-1,-1,-1,-1,-1,-1]
+				var score=0;
+				var turns = 0;
+				function allClosed(){
+			var i;
+			for(i=1;i<17;i++){
+			document.getElementById(i).style.backgroundImage ="url(ct.png)";
+			document.getElementById(i).className="col";
+			}
+			}
+			function shuffle(array) {
+			  var currentIndex = array.length, temporaryValue, randomIndex;
+			  while (0 !== currentIndex) {
+						randomIndex = Math.floor(Math.random() * currentIndex);
+						currentIndex -= 1;
+						temporaryValue = array[currentIndex];
+						array[currentIndex] = array[randomIndex];
+						array[randomIndex] = temporaryValue;
+						temporaryValue = index[currentIndex];
+						index[currentIndex] = index[randomIndex];
+						index[randomIndex] = temporaryValue;
+				}
+
+				  return array;
+				}
+				arr = shuffle(arr);
+
+ 
+
+
+</script>
+</head>
+<body >
+
+<script>
+			function rotate(id){
+			if(id!=previous&&checkNew(id)){
+			if(turned==0)
+			{
+			document.getElementById(id+1).className="inside";
+			setTimeout(function(){document.getElementById(id+1).style.backgroundImage ="url("+arr[id]+")";
+			},300);
+			turned=1;
+			previous=id;
+			}
+			else
+			if(turned==1)
+			{
+			setTimeout(function(){document.getElementById(id+1).style.backgroundImage ="url("+arr[id]+")";
+			},300);
+			
+			document.getElementById(id+1).className="inside";
+			if(index[id]!=index[previous]){
+			setTimeout(function(){document.getElementById(id+1).style.backgroundImage ="url(ct.png)";
+			document.getElementById(id+1).className="col";
+			console.log(previous);
+			document.getElementById(previous+1).style.backgroundImage ="url(ct.png)";
+			document.getElementById(previous+1).className="col";previous=-1;}, 800);
+			turned=0;
+			turns++;
+			score=score-5;
+			document.getElementById("turns").innerHTML="<b>"+turns+"</b>";
+			document.getElementById("score").innerHTML="<b>"+score+"</b>";
+			}
+			if(index[id]==index[previous]){
+			setTimeout(function(){document.getElementById(id+1).style.background ="transparent";
+			document.getElementById(previous+1).style.background ="transparent";out[count]=id;
+			out[count+1]=previous;
+			out[count+2]=-1;
+			count=count+2;
+			console.log(out)
+			turned=0;
+			previous=-1;if(out[16]==-1)
+			{
+			document.getElementById("turns1").innerHTML="<b>"+turns+"</b>";
+			document.getElementById("score1").innerHTML="<b>"+score+"</b>";
+			document.getElementById("congratulations").style.display="block";
+			}},500);
+			turns++;
+			score=score+10;
+			document.getElementById("turns").innerHTML="<b>"+turns+"</b>";
+			document.getElementById("score").innerHTML="<b>"+score+"</b>";
+			console.log(out[16],out[16]==-1)
+			
+			}}
+			}
+			
+			}
+			function checkNew(id){
+				for(i=0;out[i]!=-1;i++)
+					{
+					if (out[i]==id)
+					return(0);
+					
+					}
+				return(1);
+			}
+			
+			function scrollDown(){
+				$("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+			}</script>
+
+
+
+
+
+
+
+
+
+
+<h1 class="heading">Match the Flag..!!!</h1>
+
+<div class="container1">
+    <div class="row">
+        <div id="1" class="col" onclick="rotate(0)"></div>
+        <div id="2" class="col" onclick="rotate(1)"></div>
+        <div id="3" class="col" onclick="rotate(2)"></div>
+        <div id="4" class="col" onclick="rotate(3)"></div>
+    </div>
+    <div class="row">
+        <div id="5" class="col" onclick="rotate(4)"></div>
+        <div id="6" class="col" onclick="rotate(5)"></div>
+        <div id="7" class="col" onclick="rotate(6)"></div>
+        <div id="8" class="col" onclick="rotate(7)"></div>
+    </div>
+    <div class="row">
+        <div id="9" class="col" onclick="rotate(8)"></div>
+        <div id="10" class="col" onclick="rotate(9)"></div>
+        <div id="11" class="col" onclick="rotate(10)"></div>
+        <div id="12" class="col" onclick="rotate(11)"></div>
+    </div>
+    <div class="row">
+        <div id="13" class="col" onclick="rotate(12)"></div>
+        <div id="14" class="col" onclick="rotate(13)"></div>
+        <div id="15" class="col" onclick="rotate(14)"></div>
+        <div id="16" class="col" onclick="rotate(15)"></div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+
